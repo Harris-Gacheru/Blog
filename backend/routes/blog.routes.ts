@@ -4,9 +4,9 @@ import { createBlog, deleteBlog, getAllBlogs, getBlog, updateBlog } from '../con
 const router = express.Router()
 
 router.post('/create', createBlog)
-router.get('/blogs', getAllBlogs)
-router.get('/blogs/:id', getBlog)
-router.patch('/blogs/:id', updateBlog)
-router.delete('/blogs/:id', deleteBlog)
+router.get('/', getAllBlogs)
+router.get('/:id', getBlog)
+router.patch('/:id', updateBlog)
+router.delete('/:id', deleteBlog)
 
 export default router

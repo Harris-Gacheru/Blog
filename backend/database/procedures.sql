@@ -3,7 +3,7 @@
 -- as
 -- begin
 
--- select * from blog where deletedat = null
+-- select * from blog where deletedat is null
 
 -- end
 

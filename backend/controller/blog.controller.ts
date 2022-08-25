@@ -15,7 +15,7 @@ export const createBlog: RequestHandler = async(req, res) => {
         .input('body', mssql.VarChar, body)
         .execute('createBlog')
         
-        res.status(200).json({success: true, message: 'BLog created successfully'})
+        res.status(200).json({success: true, message: 'Blog created successfully'})
     } catch (error: any) {
         res.json({success: false, error: error.message})
     }
@@ -26,11 +26,11 @@ export const getAllBlogs: RequestHandler = async(req, res) => {
         let pool = await mssql.connect(sqlConfig)
         const blogs = await pool.request().execute('getAllBlogs')
         
-        if (blogs.recordset) {
+        if (blogs.recordset.length !== 0) {
             return res.status(200).json({success: true, message: `${blogs.recordset.length} blog(s) available`, blogs: blogs.recordset})
         }
 
-        res.status(400).json({success: true, message: 'No blogs available'})
+        res.status(200).json({success: false, message: 'No blogs available'})
     } catch (error: any) {
         res.json({success: false, error: error.message})
     }

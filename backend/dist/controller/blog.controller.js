@@ -26,7 +26,7 @@ const createBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             .input('title', mssql_1.default.VarChar, title)
             .input('body', mssql_1.default.VarChar, body)
             .execute('createBlog');
-        res.status(200).json({ success: true, message: 'BLog created successfully' });
+        res.status(200).json({ success: true, message: 'Blog created successfully' });
     }
     catch (error) {
         res.json({ success: false, error: error.message });
@@ -37,10 +37,10 @@ const getAllBlogs = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         let pool = yield mssql_1.default.connect(sqlconfig_1.default);
         const blogs = yield pool.request().execute('getAllBlogs');
-        if (blogs.recordset) {
+        if (blogs.recordset.length !== 0) {
             return res.status(200).json({ success: true, message: `${blogs.recordset.length} blog(s) available`, blogs: blogs.recordset });
         }
-        res.status(400).json({ success: true, message: 'No blogs available' });
+        res.status(200).json({ success: false, message: 'No blogs available' });
     }
     catch (error) {
         res.json({ success: false, error: error.message });
