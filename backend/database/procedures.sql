@@ -27,23 +27,23 @@
 -- end
 
 -- update blog
--- create or alter procedure updateBlog @id varchar(255), @title varchar(255), @body nvarchar(max), @modifiedat date
+-- create or alter procedure updateBlog @id varchar(255), @title varchar(255), @body nvarchar(max)
 -- as
 -- begin
 
 -- update blog
--- set title = @title, body = @body, modifiedat = @modifiedat
+-- set title = @title, body = @body, modifiedat = current_timestamp
 -- where id = @id
 
 -- end
 
 -- delete blog
--- create or alter procedure deleteBlog @id varchar(255), @deletedat date
+-- create or alter procedure deleteBlog @id varchar(255)
 -- as
 -- begin
 
 -- update blog 
--- set deletedat = @deletedat
+-- set deletedat = current_timestamp
 -- where id = @id
 
 -- end
