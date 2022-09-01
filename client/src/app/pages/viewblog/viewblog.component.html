@@ -10,8 +10,10 @@
         <div class="col-md-10 tw-pr-6">
             <div class="tw-flex tw-justify-between tw-items-center tw-mb-4">
                 <p class="tw-font-bold tw-text-2xl tw-capitalize tw-text-blue-500">{{ blog.title }}</p>
-
-                <p>{{ blog.createdat }}</p>
+                <p class="tw-text-gray-500">
+                    <span class="tw-font-semibold tw-text-black">Created on: </span>
+                    {{ blog.createdat }}
+                </p>
             </div>
             <p [innerHTML]="blog.body"></p>
         </div>

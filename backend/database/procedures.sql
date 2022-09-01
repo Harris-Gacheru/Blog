@@ -3,7 +3,7 @@
 -- as
 -- begin
 
--- select * from blog where deletedat is null
+-- select id, title, body, coverImage, format(createdat, 'dd-mm-yyyy') as createdat, format(createdat, 'dd-mm-yyyy') as modifiedat, format(createdat, 'dd-mm-yyyy') as deletedat from blog where deletedat is null
 -- order by createdat desc
 
 -- end
@@ -13,7 +13,7 @@
 -- as
 -- begin
 
--- select * from blog where id = @id
+-- select id, title, body, coverImage, format(createdat, 'dd-mm-yyyy') as createdat, format(createdat, 'dd-mm-yyyy') as modifiedat, format(createdat, 'dd-mm-yyyy') as deletedat from blog where id = @id
 
 -- end
 

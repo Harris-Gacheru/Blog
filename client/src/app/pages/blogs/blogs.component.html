@@ -6,9 +6,15 @@
     <p *ngIf="blogs.length === 0" class="tw-text-lg tw-font-semibold">No blogs available!</p>
 
     <div *ngFor="let blog of blogs" class="card tw-p-5 tw-mb-6">
-        <p class="tw-font-bold tw-text-2xl tw-capitalize tw-text-blue-500">{{ blog.title }}</p>
+        <div class="tw-flex tw-justify-between tw-items-center tw-mb-6">
+            <p class="tw-font-bold tw-text-2xl tw-capitalize tw-text-blue-500">{{ blog.title }}</p>
+            <p class="tw-text-gray-500">
+                <span class="tw-font-semibold tw-text-black">Created on: </span>
+                {{ blog.createdat }}
+            </p>
+        </div>
+
         <p [innerHTML]="blog.body"></p>
-        <p>{{ blog.createdat }}</p>
         <div>
             <a routerLink="v/{{ blog.id }}" class="tw-block tw-w-fit tw-mt-6 tw-border tw-border-gray-400 tw-px-5 tw-py-1 tw-text-gray-500 hover:tw-bg-blue-500 hover:tw-text-white hover:tw-border-blue-500">Read</a>
         </div>
