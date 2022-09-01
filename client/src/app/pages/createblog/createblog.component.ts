@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { min } from 'rxjs';
 import { BlogService } from 'src/app/services/blog.service'
 
 @Component({
@@ -20,9 +21,9 @@ export class CreateblogComponent implements OnInit {
 
   ngOnInit(): void {
     this.blogForm = this.fb.group({
-      title: [''],
+      title: ['', Validators.required],
       coverImage: [null],
-      body: ['']
+      body: ['', Validators.required]
     })
   }
   
@@ -43,8 +44,6 @@ export class CreateblogComponent implements OnInit {
     formData.append('title', this.blogForm.get('title').value)
     formData.append('body', this.blogForm.get('body').value)
     formData.append('coverImage', this.blogForm.get('coverImage').value)
-
-    console.log(this.blogForm.value)
 
     this.blogService.createBlog(formData).subscribe(
       res => {

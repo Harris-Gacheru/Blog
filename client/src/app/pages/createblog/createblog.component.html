@@ -12,8 +12,9 @@
 
     <form [formGroup]="blogForm" class="tw-w-3/4 tw-mx-auto" enctype="multipart/form-data">
         <div class="tw-mb-6">
-            <label for="title" class="tw-block tw-mb-2 tw-font-semibold">Title</label>
+            <label for="title" class="tw-block tw-mb-2 tw-font-semibold">Title<span class="tw-text-red-600 tw-text-sm">*</span></label>
             <input type="text" class="form-control" formControlName="title">
+            <p *ngIf="blogForm.get('title').touched && blogForm.get('title').invalid" class="tw-text-red-600">Title is required</p>
         </div>
 
         <div class="tw-mb-6">
@@ -22,7 +23,7 @@
         </div>
 
         <div class="tw-mb-6">
-            <label for="title" class="tw-block tw-mb-2 tw-font-semibold">Blog</label>
+            <label for="title" class="tw-block tw-mb-2 tw-font-semibold">Blog<span class="tw-text-red-600 tw-text-sm">*</span></label>
             <ckeditor
                 [editor]="Editor"
                 [config]="{
@@ -32,10 +33,12 @@
                 }"
                 formControlName="body">
             </ckeditor>
+
+            <p *ngIf="blogForm.get('body').touched && blogForm.get('body').invalid" class="tw-text-red-600">Blog content is required</p>
         </div>
 
         <div align="center" class="tw-mt-10">
-            <button type="submit" (click)="submit()" class="tw-bg-blue-500 tw-text-white tw-px-10 tw-py-2 tw-rounded-sm hover:tw-bg-blue-700">Submit</button>
+            <button type="submit" (click)="submit()" class="tw-bg-blue-500 tw-text-white tw-px-10 tw-py-2 tw-rounded-sm hover:tw-bg-blue-700 disabled:tw-bg-blue-300" [disabled]="blogForm.invalid">Submit</button>
         </div>
     </form>
 </div>
