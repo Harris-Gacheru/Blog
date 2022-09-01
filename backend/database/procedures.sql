@@ -4,6 +4,7 @@
 -- begin
 
 -- select * from blog where deletedat is null
+-- order by createdat desc
 
 -- end
 
@@ -17,12 +18,12 @@
 -- end
 
 -- create blog
--- create or alter procedure createBlog @id varchar(255), @title varchar(255), @body nvarchar(max)
+-- create or alter procedure createBlog @id varchar(255), @title varchar(255), @body nvarchar(max), @coverImage nvarchar(max)
 -- as
 -- begin
 
--- insert into blog(id, title, body)
--- values(@id, @title, @body)
+-- insert into blog(id, title, body, coverImage)
+-- values(@id, @title, @body, @coverImage)
 
 -- end
 
@@ -42,8 +43,13 @@
 -- as
 -- begin
 
+-- -- soft delete
 -- update blog 
 -- set deletedat = current_timestamp
+-- where id = @id
+
+-- --hard delete
+-- delete from blog
 -- where id = @id
 
 -- end

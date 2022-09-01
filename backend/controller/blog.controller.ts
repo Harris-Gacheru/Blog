@@ -7,12 +7,14 @@ export const createBlog: RequestHandler = async(req, res) => {
     try {
         const id = uuid()
         const { title, body } = req.body as { title: string, body: string }
+        const image = req.file?.originalname
 
         let pool = await mssql.connect(sqlConfig)
         await pool.request()
         .input('id', mssql.VarChar, id)
         .input('title', mssql.VarChar, title)
         .input('body', mssql.VarChar, body)
+        .input('coverImage', mssql.VarChar, image)
         .execute('createBlog')
         
         res.status(200).json({success: true, message: 'Blog created successfully'})

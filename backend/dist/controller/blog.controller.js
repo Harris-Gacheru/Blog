@@ -17,14 +17,17 @@ const uuid_1 = require("uuid");
 const mssql_1 = __importDefault(require("mssql"));
 const sqlconfig_1 = __importDefault(require("../config/sqlconfig"));
 const createBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
         const id = (0, uuid_1.v1)();
         const { title, body } = req.body;
+        const image = (_a = req.file) === null || _a === void 0 ? void 0 : _a.originalname;
         let pool = yield mssql_1.default.connect(sqlconfig_1.default);
         yield pool.request()
             .input('id', mssql_1.default.VarChar, id)
             .input('title', mssql_1.default.VarChar, title)
             .input('body', mssql_1.default.VarChar, body)
+            .input('coverImage', mssql_1.default.VarChar, image)
             .execute('createBlog');
         res.status(200).json({ success: true, message: 'Blog created successfully' });
     }

@@ -12,16 +12,16 @@ export class BlogService {
 
   }
 
-  createBlog(blog: Blog){
-    return this.http.post(this.BASE_URL, blog)
+  createBlog(formData: FormData){
+    return this.http.post<any>(`${this.BASE_URL}/create`, formData)
   }
 
   getAllBlogs(){
-    return this.http.get(this.BASE_URL)
+    return this.http.get<any>(this.BASE_URL)
   }
 
   getBlog(id: string){
-    return this.http.get(`${this.BASE_URL}/${id}`)
+    return this.http.get<any>(`${this.BASE_URL}/${id}`)
   }
 
   updateBlog(id: string, blog: Blog){
@@ -29,6 +29,6 @@ export class BlogService {
   }
 
   deleteBlog(id: string){
-    return this.http.delete(`${this.BASE_URL}/${id}`)
+    return this.http.delete<any>(`${this.BASE_URL}/${id}`)
   }
 }
